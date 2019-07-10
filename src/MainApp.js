@@ -28,7 +28,7 @@ class MainApp extends React.Component {
         return (
           <p>
             {pre}
-            <mark>
+            <mark className="Highlighting">
             {match}
             </mark>
             {post}

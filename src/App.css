@@ -12,6 +12,14 @@
   padding-right: 20px;
 }
 
+.Highlighting {
+  background-color: #d53369;
+  color: white;
+  font-weight: 700;
+  border-radius: 2px;
+  padding: 2px;
+}
+
 .Emoji-text {
   font-size: 3.1em;
 }
