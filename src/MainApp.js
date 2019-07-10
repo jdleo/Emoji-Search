@@ -19,7 +19,21 @@ class MainApp extends React.Component {
   //helper method to get the char of the current emoji name in array
   getName(index) {
     if (currentEmojis[index]) {
-        return currentEmojis[index].name;
+        const txt = this.state.textValue;
+        const name = currentEmojis[index].name;
+        const idx = (name.match(txt)).index;
+        const pre = name.slice(0, idx);
+        const match = name.slice(idx, idx + txt.length);
+        const post = name.slice(idx + txt.length);
+        return (
+          <p>
+            {pre}
+            <mark>
+            {match}
+            </mark>
+            {post}
+          </p>
+        );
     } else {
         return -1;
     }
@@ -33,7 +47,7 @@ class MainApp extends React.Component {
       nums.push(i * 4);
     }
 
-    if (currentEmojis.length == 0) {
+    if (currentEmojis.length === 0) {
       return (
         <p style={{color: "#153366", "font-weight": "800", "font-size": "2.85em"}}>Sorry, no results here. 😢😢😢</p>
       );
@@ -43,7 +57,7 @@ class MainApp extends React.Component {
           {
             nums.map(num =>
               <Row>
-                <Col style={{display: "inline-block", margin: "10px", visibility: (this.getChar(num) == -1) ? "hidden": "visible"}} key={this.getChar(num)}>
+                <Col style={{display: "inline-block", margin: "10px", visibility: (this.getChar(num) === -1) ? "hidden": "visible"}} key={this.getChar(num)}>
                   <div className="Card">
                     <p className="Emoji-text">
                       {this.getChar(num)}
@@ -53,7 +67,7 @@ class MainApp extends React.Component {
                     </p>
                   </div>
                 </Col>
-                <Col style={{display: "inline-block", margin: "10px", visibility: (this.getChar(num+1) == -1) ? "hidden": "visible"}} key={this.getChar(num+1)}>
+                <Col style={{display: "inline-block", margin: "10px", visibility: (this.getChar(num+1) === -1) ? "hidden": "visible"}} key={this.getChar(num+1)}>
                   <div className="Card">
                     <p className="Emoji-text">
                       {this.getChar(num+1)}
@@ -63,7 +77,7 @@ class MainApp extends React.Component {
                     </p>
                   </div>
                 </Col>
-                <Col style={{display: "inline-block", margin: "10px", visibility: (this.getChar(num+2) == -1) ? "hidden": "visible"}} key={this.getChar(num+2)}>
+                <Col style={{display: "inline-block", margin: "10px", visibility: (this.getChar(num+2) === -1) ? "hidden": "visible"}} key={this.getChar(num+2)}>
                   <div className="Card">
                     <p className="Emoji-text">
                       {this.getChar(num+2)}
@@ -73,7 +87,7 @@ class MainApp extends React.Component {
                     </p>
                   </div>
                 </Col>
-                <Col style={{display: "inline-block", margin: "10px", visibility: (this.getChar(num+3) == -1) ? "hidden": "visible"}} key={this.getChar(num+3)}>
+                <Col style={{display: "inline-block", margin: "10px", visibility: (this.getChar(num+3) === -1) ? "hidden": "visible"}} key={this.getChar(num+3)}>
                   <div className="Card">
                     <p className="Emoji-text">
                       {this.getChar(num+3)}
@@ -101,10 +115,13 @@ class MainApp extends React.Component {
   handleChange (e) {
     //get current text field value
     const txt = e.target.value;
-    //filter array based on search query
-    currentEmojis = emojiJson.filter(emoji => emoji.name.includes(txt));
-    //set state to trigger react reload
-    this.setState({textValue: txt});
+    //check if txt length is greater than 1
+    if (txt.length > 1) {
+      //filter array based on search query
+      currentEmojis = emojiJson.filter(emoji => emoji.name.includes(txt));
+      //set state to trigger react reload
+      this.setState({textValue: txt});
+    }
   }
 
   render () {
@@ -115,8 +132,7 @@ class MainApp extends React.Component {
         </header>
         <input 
           type="text"
-          placeholder="Search..." 
-          value={this.state.textValue} 
+          placeholder="Search..."  
           onChange={(e) => {this.handleChange(e)}}
           className="Input-bar"
         />
