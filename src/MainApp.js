@@ -21,7 +21,7 @@ class MainApp extends React.Component {
     if (currentEmojis[index]) {
         const txt = this.state.textValue;
         const name = currentEmojis[index].name;
-        const idx = (name.match(txt)).index;
+        const idx = name.toLowerCase().indexOf(txt.toLowerCase());
         const pre = name.slice(0, idx);
         const match = name.slice(idx, idx + txt.length);
         const post = name.slice(idx + txt.length);
@@ -108,7 +108,7 @@ class MainApp extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-    textValue: ""
+      textValue: ""
     }
   }
 
@@ -118,7 +118,7 @@ class MainApp extends React.Component {
     //check if txt length is greater than 1
     if (txt.length > 1) {
       //filter array based on search query
-      currentEmojis = emojiJson.filter(emoji => emoji.name.includes(txt));
+      currentEmojis = emojiJson.filter(emoji => emoji.name.toLowerCase().includes(txt.toLowerCase()));
       //set state to trigger react reload
       this.setState({textValue: txt});
     }
