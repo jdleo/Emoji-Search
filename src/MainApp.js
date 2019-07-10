@@ -79,12 +79,6 @@ class MainApp extends React.Component {
     this.setState({textValue: e.target.value});
   }
 
-  handleClick () {
-    this.setState({value: 'another random text'})
-    var event = new Event('input', { bubbles: true });
-    this.myinput.dispatchEvent(event);
-  }
-
   render () {
     return (
       <div>
