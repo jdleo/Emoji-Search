@@ -5,6 +5,23 @@
 .Card {
   border-radius: 15px;
   background-color: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  padding-top: 5px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.Emoji-text {
+  font-size: 3.1em;
+}
+
+.Name-text {
+  color: #153366;
+}
+
+.Main-container {
+  margin-top: 50px;
 }
 
 .Main-header {

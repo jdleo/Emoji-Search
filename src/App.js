@@ -5,7 +5,7 @@ import emojiJson from './emoji.json'
 import { Container, Row, Col } from 'reactstrap';
 
 
-function readJson() {
+function renderEmojiList() {
   //numbers by groups of fours
   var nums = [];
   //create list
@@ -14,46 +14,46 @@ function readJson() {
   }
 
   return (
-    <Container>
+    <Container className="Main-container">
       {
         nums.map(num =>
           <Row>
-            <Col style={{display: "inline-block", padding: "10px"}} key={emojiJson[num].codes}>
+            <Col style={{display: "inline-block", margin: "10px"}} key={emojiJson[num].char}>
               <div className="Card">
-                <p>
+                <p className="Emoji-text">
                   {emojiJson[num].char}
                 </p>
-                <p>
+                <p className="Name-text">
                   {emojiJson[num].name}
                 </p>
               </div>
             </Col>
-            <Col style={{display: "inline-block", padding: "10px"}} key={emojiJson[num+1].codes}>
+            <Col style={{display: "inline-block", margin: "10px"}} key={emojiJson[num+1].char}>
               <div className="Card">
-                <p>
+                <p className="Emoji-text">
                   {emojiJson[num+1].char}
                 </p>
-                <p>
+                <p className="Name-text">
                   {emojiJson[num+1].name}
                 </p>
               </div>
             </Col>
-            <Col style={{display: "inline-block", padding: "10px"}} key={emojiJson[num+2].codes}>
+            <Col style={{display: "inline-block", margin: "10px"}} key={emojiJson[num+2].char}>
               <div className="Card">
-                <p>
+                <p className="Emoji-text">
                   {emojiJson[num+2].char}
                 </p>
-                <p>
+                <p className="Name-text">
                   {emojiJson[num+2].name}
                 </p>
               </div>
             </Col>
-            <Col style={{display: "inline-block", padding: "10px"}} key={emojiJson[num].codes}>
+            <Col style={{display: "inline-block", margin: "10px"}} key={emojiJson[num].char}>
               <div className="Card">
-                <p>
+                <p className="Emoji-text">
                   {emojiJson[num+3].char}
                 </p>
-                <p>
+                <p className="Name-text">
                   {emojiJson[num+3].name}
                 </p>
               </div>
@@ -70,7 +70,7 @@ function App() {
   return (
     <div className="App">
       <MainApp/>
-      {readJson()}
+      {renderEmojiList()}
     </div>
   );
 }
