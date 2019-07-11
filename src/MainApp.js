@@ -1,11 +1,17 @@
 import React from 'react';
 import './App.css';
+import GithubCorner from 'react-github-corner';
 import emojiJson from './emoji.json'
 import { Container, Row, Col } from 'reactstrap';
 
 var currentEmojis = emojiJson.slice(0, 200);
 
 class MainApp extends React.Component {
+
+  //for github corner linking (change to your own url if you forked this)
+  gitHubUrl() {
+    return "https://github.com/jdleo/Emoji-Search"
+  }
 
   //helper method to get the char of the current emoji in array
   getChar(index) {
@@ -140,6 +146,14 @@ class MainApp extends React.Component {
           className="Input-bar"
         />
         {this.renderEmojiList()}
+        <GithubCorner
+          href={this.gitHubUrl()}
+          bannerColor="#000"
+          octoColor="#fff"
+          size={80}
+          direction="right" 
+          svgStyle={{"mixBlendMode":"darken"}}
+        />
       </div>
     )
   }
