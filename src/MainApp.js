@@ -18,22 +18,24 @@ class MainApp extends React.Component {
 
   //helper method to get the char of the current emoji name in array
   getName(index) {
-    if (currentEmojis[index]) {
-        const txt = this.state.textValue;
-        const name = currentEmojis[index].name;
-        const idx = name.toLowerCase().indexOf(txt.toLowerCase());
-        const pre = name.slice(0, idx);
-        const match = name.slice(idx, idx + txt.length);
-        const post = name.slice(idx + txt.length);
-        return (
-          <p>
-            {pre}
-            <mark className="Highlighting">
-            {match}
-            </mark>
-            {post}
-          </p>
-        );
+    if (currentEmojis[index] && this.state.didSearch) {
+      const txt = this.state.textValue;
+      const name = currentEmojis[index].name;
+      const idx = name.toLowerCase().indexOf(txt.toLowerCase());
+      const pre = name.slice(0, idx);
+      const match = name.slice(idx, idx + txt.length);
+      const post = name.slice(idx + txt.length);
+      return (
+        <p>
+          {pre}
+          <mark className="Highlighting">
+          {match}
+          </mark>
+          {post}
+        </p>
+      );
+    } else if (currentEmojis[index]) {
+      return currentEmojis[index].name;
     } else {
         return -1;
     }
@@ -108,7 +110,8 @@ class MainApp extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      textValue: ""
+      textValue: "",
+      didSearch: false
     }
   }
 
@@ -120,7 +123,7 @@ class MainApp extends React.Component {
       //filter array based on search query
       currentEmojis = emojiJson.filter(emoji => emoji.name.toLowerCase().includes(txt.toLowerCase()));
       //set state to trigger react reload
-      this.setState({textValue: txt});
+      this.setState({textValue: txt, didSearch: true});
     }
   }
 
